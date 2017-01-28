@@ -1,11 +1,12 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "description": "个人博客",
-  "main": "index.js",
+  "description": "个人网站",
+  "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "deploy": "pm2 start server.js --name=blog"
   },
   "repository": {
     "type": "git",
