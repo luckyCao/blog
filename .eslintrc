@@ -1,0 +1,33 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "plugins": [
+    "babel",
+    "async-await"
+  ],
+  "rules": {
+    "strict": 0,
+    "comma-dangle": 0,
+    "semi": [ 2, "never"],
+    "func-names": 0,
+    "max-len": [2, 300, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": true,
+      "ignorePattern": "return\\s[a-zA-z0-9]*"
+    }],
+    "global-require": 0,
+    "no-extra-boolean-cast": 0,
+    "generator-star-spacing": 0,
+    "babel/generator-star-spacing": 1,
+    "async-await/space-after-async": 2,
+    "async-await/space-after-await": 2
+  },
+  "settings":{
+    "import/resolver": {
+      "/home/project/blog/node_modules/eslint-plugin-import/resolvers/webpack": {}
+    }
+  },
+  "env": {
+    "browser": true
+  }
+}
