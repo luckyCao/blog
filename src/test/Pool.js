@@ -21,7 +21,6 @@ describe('Pool', () => {
     }
     expect(poolInstance.count).to.equal(6)
   })
-
   it('test createItem func', () => {
     let num = 1
     let poolInstance = new Pool(Sprite, 16, () => {
