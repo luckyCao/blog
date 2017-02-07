@@ -56,7 +56,6 @@ describe('Pool', () => {
     for (let i = 0; i < 5; i++) {
       poolInstance.destroyItem(group[i])
     }
-
     expect(poolInstance.count).to.equal(5)
   })
 })
