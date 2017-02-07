@@ -37,4 +37,13 @@ describe('Pool', () => {
     poolInstance.destroyItem(item)
     expect(poolInstance.createItem().height).to.equal(100)
   })
+
+  it('test grow feature', () => {
+    let poolInstance = new Pool(Sprite, 10)
+    let group = []
+    for (let i = 0; i < 11; i++) {
+      group.push(poolInstance.createItem())
+    }
+    expect(poolInstance.poolSize).to.equal(11)
+  })
 })
