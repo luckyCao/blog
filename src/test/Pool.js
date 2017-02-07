@@ -46,4 +46,16 @@ describe('Pool', () => {
     }
     expect(poolInstance.poolSize).to.equal(11)
   })
+
+  it('test count after create and destroy', () => {
+    let poolInstance = new Pool(Sprite, 10)
+    let group = []
+    for (let i = 0; i < 11; i++) {
+      group.push(poolInstance.createItem())
+    }
+    for (let i = 0; i < 5; i++) {
+      poolInstance.destroyItem(group[i])
+    }
+    expect(poolInstance.count).to.equal(5)
+  })
 })
