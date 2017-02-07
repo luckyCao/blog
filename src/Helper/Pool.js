@@ -1,9 +1,6 @@
-/**
- * Created by caolei on 2017/2/7.
- */
+
 export default class Pool {
   /**
-   *
    * @param classType Pool中存储的对象类型
    * @param size      Pool的length
    * @param newFunc   Pool中对象的构造函数
@@ -28,7 +25,6 @@ export default class Pool {
     this.poolSize++
     return this.newFunc !== null ? this.newFunc() : new this.ClassType()
   }
-
   /**
    * 从pool中拿一个对象
    * @returns {*}
@@ -39,7 +35,6 @@ export default class Pool {
     }
     return this.canGrow ? this.newItem() : null
   }
-
   /**
    * 把不用的对象放入pool
    * @param item
