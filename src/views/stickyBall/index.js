@@ -54,14 +54,17 @@ class StickyBall {
    * touchmove事件
    */
   dragMove(event) {
-    console.log(1)
     if (this.canDragBall) {
       let pos = this.getMousePos(event)
       let curDis = distance(pos, this.ball.pos) //当前距离
-      if (curDis > this.preDis) {
+      if (curDis > this.preDis && this.ball.radius > config.minRadius) {
+        console.log(1)
         this.ball.radius -= 0.2
-      } else {
-        this.ball.radius += 0.2
+      }
+
+      if (curDis < this.preDis && this.ball.radius < config.radius) {
+        console.log(2)
+        this.ball.radius = (this.ball.radius + 0.2) > 5 ? 5 : (this.ball.radius + 0.2)
       }
       this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
       this.drawBall(this.ball.pos.x, this.ball.pos.y, this.ball.radius, 0, Math.PI*2, this.ball.color)
