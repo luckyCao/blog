@@ -6,4 +6,4 @@ export const xPox = 250
 export const yPox = 250
 export const radius = 15
 export const maxDistance = 80
-export const minRadius = 5
+export const minRadius = 8
