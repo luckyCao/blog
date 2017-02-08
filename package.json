@@ -46,12 +46,20 @@
     "chai": "^3.5.0"
   },
   "devDependencies": {
+    "autoprefixer": "^6.7.2",
     "chai": "^3.5.0",
+    "css-loader": "^0.26.1",
     "eslint": "^3.15.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-import-resolver-webpack": "^0.8.1",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-import": "^2.2.0",
-    "mocha": "^3.2.0"
+    "less": "^2.7.2",
+    "less-loader": "^2.2.3",
+    "mocha": "^3.2.0",
+    "postcss": "^5.2.12",
+    "postcss-loader": "^1.2.2",
+    "precss": "^1.4.0",
+    "style-loader": "^0.13.1"
   }
 }

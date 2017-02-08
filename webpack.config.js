@@ -10,10 +10,11 @@ var phaser = path.join(phaserModule, 'build/custom/phaser-split.js'),
   p2 = path.join(phaserModule, 'build/custom/p2.js');
 
 module.exports = {
-  entry: [
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
-    './src/App.js'
-  ],
+  entry: {
+    client: 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
+    game: './src/App.js',
+    stickyBall: './src/views/stickyBall'
+  },
   output: {
     path: path.join(__dirname, '/build/'),
     filename: 'build/[name].[hash:4].js',
@@ -31,6 +32,28 @@ module.exports = {
       test: /phaser-split\.js$/, use: ['expose-loader?Phaser']
     }, {
       test: /p2\.js/, use: ['expose-loader?p2']
+    },{
+      test: /\.less$/,
+      use: [{
+        loader: 'style-loader'
+      }, {
+          loader: 'css-loader',
+          options: {
+            modules: true
+          }
+      },{
+        loader: 'postcss-loader',
+        options: {
+          plugins: function () {
+            return [
+              require('precss'),
+              require('autoprefixer')
+            ];
+          }
+        }
+      },{
+        loader: 'less-loader'
+      }]
     }]
   },
   resolve: {
@@ -43,14 +66,21 @@ module.exports = {
     alias: {
       'phaser': phaser,
       'pixi.js': pixi,
-      'p2': p2,
+      'p2': p2
     }
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
       inject: 'body',
-      template: "src/index.html"
+      template: "src/index.html",
+      chunks: ['game']
+    }),
+    new HtmlWebpackPlugin({
+      filename: "stickyBall.html",
+      inject: 'body',
+      template: "src/views/index.html",
+      chunks: ['stickyBall']
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
