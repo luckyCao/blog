@@ -36,7 +36,7 @@ if (!isProduction) {
     console.log('==> 🌎 Listening on  http://%s:%d', addr.address, addr.port);
   })
 } else {
-  app.use(compression());
+  // app.use(compression());
   app.use(express.static('public'))
   app.get('/', function (req, res) {
     res.send('Hello World!');
