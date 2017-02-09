@@ -3,7 +3,9 @@
  */
 var express = require('express');
 var app = express();
-
+var compression =require('compression')
+app.use(compression());
+app.use(express.static('public'))
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
