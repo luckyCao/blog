@@ -1,3 +1,7 @@
-/**
- * Created by luckyCao on 17/2/9.
- */
+import express from 'express'
+
+const router = express.Router()
+let time = 0
+
+router.get('/sti', (req, res) => {
+})
