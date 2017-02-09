@@ -1,21 +1,21 @@
 /**
  * Created by caolei on 2017/1/25.
  */
-import express from 'express'
-import webpack from 'webpack'
-import webpackMiddleware from 'webpack-dev-middleware'
-import webpackHotMiddleware from 'webpack-hot-middleware'
-import ip from 'ip'
-import http from 'http'
-import config from './webpack.config.js'
-import compression from 'compression'
+var express =require('express')
+var webpack =require('webpack')
+var webpackMiddleware =require('webpack-dev-middleware')
+var webpackHotMiddleware =require('webpack-hot-middleware')
+var ip =require('ip')
+var http =require('http')
+var config =require('./webpack.config.js')
+var compression =require('compression')
 
-const isProduction = process.env.ENV === 'production';
+var isProduction = process.env.ENV === 'production';
 
 var app = express();
 if (!isProduction) {
-  const compiler = webpack(config)
-  const middleware = webpackMiddleware(compiler, {
+  var compiler = webpack(config)
+  var middleware = webpackMiddleware(compiler, {
     publicPath: config.output.publicPath,
     contentBase: 'dist/',
     stats: {
@@ -29,10 +29,10 @@ if (!isProduction) {
   })
   app.use(middleware)
   app.use(webpackHotMiddleware(compiler))
-  const server = http.createServer(app)
+  var server = http.createServer(app)
   server.listen(3000, ip.address(), (err) => {
     if (err) throw err
-    const addr = server.address()
+    var addr = server.address()
     console.log('==> 🌎 Listening on  http://%s:%d', addr.address, addr.port);
   })
 } else {
