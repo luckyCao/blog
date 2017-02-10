@@ -12,7 +12,7 @@ var phaser = path.join(phaserModule, 'build/custom/phaser-split.js'),
 module.exports = {
   entry: {
     client: 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
-    game: './src/App.js',
+    test: './src/views/playground',
     stickyBall: './src/views/stickyBall'
   },
   output: {
@@ -74,7 +74,7 @@ module.exports = {
       filename: "index.html",
       inject: 'body',
       template: "src/index.html",
-      chunks: ['game']
+      chunks: ['test']
     }),
     new HtmlWebpackPlugin({
       filename: "stickyBall.html",
