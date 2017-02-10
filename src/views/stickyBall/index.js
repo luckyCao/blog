@@ -1,4 +1,3 @@
-import 'styles/index.less'
 import * as config from 'views/stickyBall/config'
 import TWEEN from 'tween.js'
 import { distance, posInCircle, equal } from 'views/stickyBall/utils'
@@ -30,7 +29,7 @@ class StickyBall {
    */
   init() {
     this.ctx.beginPath()
-    this.drawBallOnCanvas(this.ball.pos.x, this.ball.pos.y, this.ball.radius, 0, Math.PI*2, this.ball.color)
+    this.drawBallOnCanvas(this.ball.pos.x * config.dpr, this.ball.pos.y * config.dpr, this.ball.radius* config.dpr, 0, Math.PI*2, this.ball.color)
     this.ctx.canvas.addEventListener('touchstart', this.dragStart.bind(this))
     this.ctx.canvas.addEventListener('touchmove', this.dragMove.bind(this))
     this.ctx.canvas.addEventListener('touchend', this.dragEnd.bind(this))
@@ -175,7 +174,7 @@ class StickyBall {
           radius: config.radius
         }
         stickyBall.ctx.clearRect(0, 0, stickyBall.ctx.canvas.width, stickyBall.ctx.canvas.height)
-        stickyBall.drawBallOnCanvas(stickyBall.ball.pos.x, stickyBall.ball.pos.y, stickyBall.ball.radius, 0, Math.PI*2, stickyBall.ball.color)
+        stickyBall.drawBallOnCanvas(stickyBall.ball.pos.x* config.dpr, stickyBall.ball.pos.y* config.dpr, stickyBall.ball.radius* config.dpr, 0, Math.PI*2, stickyBall.ball.color)
       }
       TWEEN.update(time)
     }
@@ -183,15 +182,15 @@ class StickyBall {
   dragMoveDraw(pos){
     if (this.isPosInPath(pos, { pos: this.ball.pos, radius: this.resetRadius }, posInCircle)) {
       this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
-      this.drawBallOnCanvas(this.ball.pos.x, this.ball.pos.y, this.resetRadius, 0, Math.PI*2, this.ball.color)
+      this.drawBallOnCanvas(this.ball.pos.x* config.dpr, this.ball.pos.y* config.dpr, this.resetRadius* config.dpr, 0, Math.PI*2, this.ball.color)
       return
     }
     let curDis = distance(pos, this.ball.pos) //当前距离
     // 优化一下距离的变化
-    if (curDis <= 5) {
-      this.ball.radius = 12
-    } else if (curDis <= 10) {
-      this.ball.radius = 9
+    if (curDis <= 20) {
+      this.ball.radius = 13
+    } else if (20 <curDis && curDis <= 40) {
+      this.ball.radius = 10
     } else {
       this.ball.radius = 5
     }
@@ -372,10 +371,10 @@ class StickyBall {
     this.ctx.beginPath()
     this.ctx.strokeStyle = config.gray
     this.ctx.fillStyle = config.gray
-    this.ctx.arc(this.ball.pos.x, this.ball.pos.y, this.ball.radius,startAngleOne, Math.PI + startAngleOne, false)
-    this.ctx.quadraticCurveTo(control.x, control.y, dragOneRight.x, dragOneRight.y)
-    this.ctx.arc(pos.x, pos.y, config.radius, startAngleTwo, Math.PI + startAngleTwo, false)
-    this.ctx.quadraticCurveTo(control.x, control.y, pOneLeft.x, pOneLeft.y)
+    this.ctx.arc(this.ball.pos.x* config.dpr, this.ball.pos.y* config.dpr, this.ball.radius* config.dpr,startAngleOne, Math.PI + startAngleOne, false)
+    this.ctx.quadraticCurveTo(control.x* config.dpr, control.y* config.dpr, dragOneRight.x* config.dpr, dragOneRight.y* config.dpr)
+    this.ctx.arc(pos.x* config.dpr, pos.y* config.dpr, config.radius* config.dpr, startAngleTwo, Math.PI + startAngleTwo, false)
+    this.ctx.quadraticCurveTo(control.x* config.dpr, control.y* config.dpr, pOneLeft.x* config.dpr, pOneLeft.y* config.dpr)
     this.ctx.stroke()
     this.ctx.fill()
   }
@@ -403,12 +402,10 @@ class StickyBall {
   }
 }
 window.onload = function main(){
-  window.innerHeight = window.outerHeight
-  window.innerWidth = window.outerWidth
   const canvas = document.getElementById('canvas')
-  canvas.height = window.outerHeight
-  canvas.width = window.outerWidth
-
+  canvas.setAttribute('style', ';height:' + config.sh + 'px;width:' + config.sw + 'px;');
+  canvas.width = config.sw * config.dpr;
+  canvas.height = config.sh * config.dpr;
   stickyBall = new StickyBall(canvas.getContext('2d'))
   stickyBall.init()
 }

@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register ./src/test/index.js",
-    "start": "babel-node server",
+    "start": "babel-node dev",
     "compile": "rm -rf public && webpack --config ./webpack.deploy.js --progress --profile --colors",
     "deploy": "pm2 start server.js --name=blog",
     "local": "ENV=production babel-node server"
