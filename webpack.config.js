@@ -74,7 +74,7 @@ module.exports = {
       filename: "index.html",
       inject: 'body',
       template: "src/index.html",
-      chunks: ['test']
+      chunks: ['test','client']
     }),
     new HtmlWebpackPlugin({
       filename: "stickyBall.html",

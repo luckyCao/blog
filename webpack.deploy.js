@@ -79,17 +79,17 @@ var config = {
       minSizeReduce: 1.5,
       moveToParents: true
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: false,
-      cache: false,
-      compressor: {
-        warnings: false,
-        screw_ie8: false
-      },
-      output: {
-        comments: false
-      }
-    })
+    //new webpack.optimize.UglifyJsPlugin({
+    //  sourceMap: false,
+    //  cache: false,
+    //  compressor: {
+    //    warnings: false,
+    //    screw_ie8: false
+    //  },
+    //  output: {
+    //    comments: false
+    //  }
+    //})
   ]
 };
 module.exports = config;

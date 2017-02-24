@@ -1,7 +1,6 @@
 import * as config from 'views/stickyBall/config'
 import TWEEN from 'tween.js'
 import { distance, posInCircle, equal } from 'views/stickyBall/utils'
-
 const quadrantOne = 'quadrantOne'
 const quadrantTwo = 'quadrantTwo'
 const quadrantThree = 'quadrantThree'
